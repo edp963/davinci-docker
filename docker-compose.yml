@@ -1,0 +1,39 @@
+version: '3.6'
+services:
+  davinci:
+    environment:
+      - MYSQL_CONN=jdbc:mysql://mysql:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      - DB_USER=root
+      - DB_PWD=abc123123
+      - MAIL_HOST=smtp.163.com
+      - MAIL_PORT=465
+      - MAIL_STMP_SSL=true
+      - MAIL_USER=xxxxxx@163.com
+      - MAIL_PWD=xxxxxxxx
+      - MAIL_NICKNAME=davinci
+    image: "edp963/davinci:v0.3.0-beta.4"
+    ports:
+      - 58080:8080
+    command: ["./bin/start.sh", "mysql:3306", "--", "start-server.sh"]
+    restart: always
+    volumes:
+      - davinci_logs:/opt/davinci/logs
+      - davinci_userfiles:/opt/davinci/userfiles
+      - davinci_initdb:/initdb
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc123123
+      - MYSQL_DATABASE=davinci0.3
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - davinci_initdb:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  davinci_userfiles:
+  davinci_logs:
+  davinci_initdb:
+  mysql_data:
+
+    
