@@ -30,6 +30,6 @@ docker-compose down -v
 ```
 
 
-### æ³¨æ„äº‹é¡¹
+### ×¢ÒâÊÂÏî
 
-docker-compose.yml çŽ¯å¢ƒå˜é‡K=Vä¸å…è®¸æœ‰ç©ºæ ¼ï¼ŒVä¸å…è®¸ç”¨åŒå¼•å·åŒ…è£¹
+docker-compose.yml »·¾³±äÁ¿K=V²»ÔÊÐíÓÐ¿Õ¸ñ£¬V²»ÔÊÐíÓÃË«ÒýºÅ°ü¹ü
