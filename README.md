@@ -1,9 +1,15 @@
+### 环境要求
+
+1. 安装docker后的 windows,linux,mac
+2. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动安装）
+
 ### 完整步骤
 
 ```
 git clone https://github.com/edp963/davinci-docker.git
 cd /d davinci-docker
 # docker build -t="edp963/davinci:v0.3.0-beta.4" .
+# 修改docker-compose.yml中邮箱配置
 docker-compose up -d 
 ```
 
