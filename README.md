@@ -3,7 +3,7 @@
 ```
 git clone https://github.com/edp963/davinci-docker.git
 cd /d davinci-docker
-docker build -t="edp963/davinci:v0.3.0-beta.4" .
+# docker build -t="edp963/davinci:v0.3.0-beta.4" .
 docker-compose up -d 
 ```
 
