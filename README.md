@@ -178,3 +178,18 @@ docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinc
 edp963/davinci:v0.3.0-beta.4
 ```
 
+**6.使用更丰富的配置**
+
+可以在宿主中添加一些配置文件，查看[davinci配置](https://github.com/edp963/davinci/tree/master/config)
+
+然后docker run 时将其挂载到 `/opt/davinci/config` 
+
+```
+docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true" \
+-e DB_USER="root" -e DB_PWD="pwd" \
+-e MAIL_HOST="smtp.163.com"  -e MAIL_PORT="465" -e MAIL_STMP_SSL="true" \
+-e MAIL_USER="xxxxxx@163.com"  -e MAIL_PWD="xxxxxxx" \
+-e MAIL_NICKNAME="davinci_sys" \
+-v /etc/davinci:/opt/davinci/config \
+edp963/davinci:v0.3.0-beta.4
+```
