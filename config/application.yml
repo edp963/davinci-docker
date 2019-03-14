@@ -17,7 +17,7 @@
 
 server:
   protocol: http
-  address: 0.0.0.0
+  address: ${HOST_DAVINCI:localhost}
   port: 8080
 
   # Userd for mail and download services, can be empty, careful configuration
