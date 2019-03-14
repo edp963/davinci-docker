@@ -14,19 +14,19 @@ docker-compose up -d
 
 变量|描述|默认值
 -|-|-
-HOST_DAVINCI|davinci绑定的域名|
-MYSQL_CONN|jdbc mysql连接串|
-DB_USER|mysql用户名|
-DB_PWD|mysql密码|
-MAIL_HOST|SMTP邮箱服务器
-MAIL_PORT|SMTP邮箱端口
-MAIL_USER|邮箱用户名
-MAIL_PWD|邮箱密码
-MAIL_NICKNAME|邮箱显示名称
-SMTP_TLS|smtp.starttls.enable|true
-SMTP_TLS_REQUIRED|smtp.starttls.required|true
-SMTP_AUTH|smtp.auth|true
-MAIL_STMP_SSL|mail.smtp.ssl.enable|false
+HOST_DAVINCI|server.address，绑定域名|
+MYSQL_CONN|datasource.url，jdbc mysql连接串|
+DB_USER|datasource.username|
+DB_PWD|datasource.password|
+MAIL_HOST|mail.host
+MAIL_PORT|mail.port
+MAIL_USER|mail.username
+MAIL_PWD|mail.password
+MAIL_NICKNAME|mail.nickname
+SMTP_TLS|mail.properties.smtp.starttls.enable|true
+SMTP_TLS_REQUIRED|mail.properties.smtp.starttls.required|true
+SMTP_AUTH|mail.properties.smtp.auth|true
+MAIL_STMP_SSL|mail.properties.mail.smtp.ssl.enable|false
 
 ### 原理分析
 
