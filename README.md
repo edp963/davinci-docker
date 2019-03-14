@@ -1,4 +1,4 @@
-### ÍêÕû²½Öè
+### å®Œæ•´æ­¥éª¤
 
 ```
 git clone https://github.com/edp963/davinci-docker.git
@@ -10,12 +10,12 @@ docker-compose up -d
 [http://localhost:58080](http://localhost:58080)
 
 
-### DockerÖ§³Ö»·¾³±äÁ¿ÁĞ±í
+### Dockeræ”¯æŒç¯å¢ƒå˜é‡åˆ—è¡¨
 
-±äÁ¿|ÃèÊö|Ä¬ÈÏÖµ
+å˜é‡|æè¿°|é»˜è®¤å€¼
 -|-|-
-HOST_DAVINCI|server.address£¬°ó¶¨ÓòÃû|
-MYSQL_CONN|datasource.url£¬jdbc mysqlÁ¬½Ó´®|
+HOST_DAVINCI|server.addressï¼Œç»‘å®šåŸŸå|0.0.0.0
+MYSQL_CONN|datasource.urlï¼Œjdbc mysqlè¿æ¥ä¸²|
 DB_USER|datasource.username|
 DB_PWD|datasource.password|
 MAIL_HOST|mail.host
@@ -28,46 +28,46 @@ SMTP_TLS_REQUIRED|mail.properties.smtp.starttls.required|true
 SMTP_AUTH|mail.properties.smtp.auth|true
 MAIL_STMP_SSL|mail.properties.mail.smtp.ssl.enable|false
 
-### Ô­Àí·ÖÎö
+### åŸç†åˆ†æ
 
-#### ÖÆ×÷davinci docker¾µÏñ
+#### åˆ¶ä½œdavinci dockeré•œåƒ
 
-**1. Dockfile·ÖÎö**
+**1. Dockfileåˆ†æ**
 ```
 FROM java:8-jre
 
 LABEL MAINTAINER="edp_support@groups.163.com"
 
-# ´ÓgithubÉÏÏÂÔØ·Ö·¢°ü²¢½âÑ¹
+# ä»githubä¸Šä¸‹è½½åˆ†å‘åŒ…å¹¶è§£å‹
 
 RUN cd / \
 	&& mkdir -p /opt/davinci\
 	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.4/davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist-beta.4.zip \
 	&& unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist-beta.4.zip -d /opt/davinci
 
-# ½«phantomjs´ò°üµ½¾µÏñ
+# å°†phantomjsæ‰“åŒ…åˆ°é•œåƒ
 
 ADD phantomjs-2.1.1 /opt/phantomjs-2.1.1
 
-# Êı¾İ¿â³õÊ¼»¯½Å±¾£¬µÈ´ıÊı¾İ¿â¾ÍĞ÷ºóÆô¶¯spring boot
+# æ•°æ®åº“åˆå§‹åŒ–è„šæœ¬ï¼Œç­‰å¾…æ•°æ®åº“å°±ç»ªåå¯åŠ¨spring boot
 
 ADD bin/start.sh /opt/davinci/bin/start.sh
 
-# docker¾µÏñÊÇ¾²Ì¬µÄ£¬Òò´ËÅäÖÃÎÄ¼şÖĞµÄÅäÖÃĞèÒªÓÃ»·¾³±äÁ¿´«µİ£¬Ïê¼û12factor
+# dockeré•œåƒæ˜¯é™æ€çš„ï¼Œå› æ­¤é…ç½®æ–‡ä»¶ä¸­çš„é…ç½®éœ€è¦ç”¨ç¯å¢ƒå˜é‡ä¼ é€’ï¼Œè¯¦è§12factor
 # https://12factor.net/zh_cn/
 
 ADD config/application.yml /opt/davinci/config/application.yml
 
-# Ô¤Éèdavinci±Ø±¸µÄÁ½¸ö»·¾³±äÁ¿
+# é¢„è®¾davinciå¿…å¤‡çš„ä¸¤ä¸ªç¯å¢ƒå˜é‡
 ENV DAVINCI3_HOME /opt/davinci
 ENV PHANTOMJS_HOME /opt/phantomjs-2.1.1
 
 WORKDIR /opt/davinci
 
-# ÎªÊ²Ã´Ê¹ÓÃCMD¶ø²»ÊÇENTRYPOINT? ÒòÎªCMD¿ÉÒÔÔÚdocker runµÄÊ±ºò±»Ìæ´ú
-# ÔÚÊ¹ÓÃcompose»òK8SÊ±£¬ºÜÓĞ¿ÉÄÜÒªÔÚÆô¶¯Ç°Ö´ĞĞÆäËü½Å±¾£¬¶ø²»ÊÇÖ±½ÓÔËĞĞ
+# ä¸ºä»€ä¹ˆä½¿ç”¨CMDè€Œä¸æ˜¯ENTRYPOINT? å› ä¸ºCMDå¯ä»¥åœ¨docker runçš„æ—¶å€™è¢«æ›¿ä»£
+# åœ¨ä½¿ç”¨composeæˆ–K8Sæ—¶ï¼Œå¾ˆæœ‰å¯èƒ½è¦åœ¨å¯åŠ¨å‰æ‰§è¡Œå…¶å®ƒè„šæœ¬ï¼Œè€Œä¸æ˜¯ç›´æ¥è¿è¡Œ
 # start-server.sh
-# ÔÚµ¥¶Àdocker runÇÒ²»¸½¼ÓÈÎºÎÃüÁîÊ±£¬ÒÔÏÂÃüÁîÄ¬ÈÏÖ´ĞĞ
+# åœ¨å•ç‹¬docker runä¸”ä¸é™„åŠ ä»»ä½•å‘½ä»¤æ—¶ï¼Œä»¥ä¸‹å‘½ä»¤é»˜è®¤æ‰§è¡Œ
 
 CMD ["./bin/start-server.sh"]
 
@@ -79,9 +79,9 @@ start.sh
 ```shell
 #!/bin/bash
 
-# ½«sql½Å±¾¾­¹ımysql8¼æÈİ´¦Àíºó£¬Ğ´Èë/initdbÄ¿Â¼
-# /initdb Ä¿Â¼ÊÇÓëmysqlÈİÆ÷¹²ÏíÄ¿Â¼
-# mysqlÈİÆ÷½«ÔÚÆô¶¯Ê±Ö´ĞĞ /docker-entrypoint-initdb.d ÖĞµÄËùÓĞ½Å±¾
+# å°†sqlè„šæœ¬ç»è¿‡mysql8å…¼å®¹å¤„ç†åï¼Œå†™å…¥/initdbç›®å½•
+# /initdb ç›®å½•æ˜¯ä¸mysqlå®¹å™¨å…±äº«ç›®å½•
+# mysqlå®¹å™¨å°†åœ¨å¯åŠ¨æ—¶æ‰§è¡Œ /docker-entrypoint-initdb.d ä¸­çš„æ‰€æœ‰è„šæœ¬
 
 cd /opt/davinci/bin/
 mkdir /initdb
@@ -89,10 +89,10 @@ cat davinci.sql > /initdb/davinci.sql
 sed -i '1i\SET GLOBAL log_bin_trust_function_creators = 1;' /initdb/davinci.sql
 
 
-# ÓÉÓÚdocker composeÖĞÆô¶¯Ë³Ğò¹ÜÀí½»¸øÁËÈİÆ÷×Ô¼º
-# Ïê¼û https://docs.docker.com/compose/startup-order/
-# Òò´ËÎÒÃÇĞèÒªÓÃcurlÌ½²âmysql¶Ë¿Ú£¬µ±½ÓÊÜÊı¾İ×Ö½Ú´óÓÚ0Ê±ÈÏÎª
-# Êı¾İ¿â¿ÉÒÔÁ¬Í¨£¬½ÓÏÂÀ´ÎÒÃÇÖ´ĞĞdavinci spring bootÖ÷³ÌĞò
+# ç”±äºdocker composeä¸­å¯åŠ¨é¡ºåºç®¡ç†äº¤ç»™äº†å®¹å™¨è‡ªå·±
+# è¯¦è§ https://docs.docker.com/compose/startup-order/
+# å› æ­¤æˆ‘ä»¬éœ€è¦ç”¨curlæ¢æµ‹mysqlç«¯å£ï¼Œå½“æ¥å—æ•°æ®å­—èŠ‚å¤§äº0æ—¶è®¤ä¸º
+# æ•°æ®åº“å¯ä»¥è¿é€šï¼Œæ¥ä¸‹æ¥æˆ‘ä»¬æ‰§è¡Œdavinci spring bootä¸»ç¨‹åº
 set -e
 
 host="$1"
@@ -107,7 +107,7 @@ done
 source $cmd
 ```
 
-**2. ¹¹½¨¾µÏñ**
+**2. æ„å»ºé•œåƒ**
 
 ```
 docker build -t="edp963/davinci:v0.3.0-beta.4" .
@@ -132,13 +132,13 @@ services:
     image: "edp963/davinci:v0.3.0-beta.4"
     ports:
       - 58080:8080
-    # µÈ´ımysql¾ÍĞ÷ºóÔÙÆô¶¯spring bootÖ÷³ÌĞò
+    # ç­‰å¾…mysqlå°±ç»ªåå†å¯åŠ¨spring bootä¸»ç¨‹åº
     command: ["./bin/start.sh", "mysql:3306", "--", "start-server.sh"]
     restart: always
     volumes:
       - davinci_logs:/opt/davinci/logs
       - davinci_userfiles:/opt/davinci/userfiles
-      - davinci_initdb:/initdb  #¹²Ïí¸ømysql×÷Êı¾İ³õÊ¼»¯
+      - davinci_initdb:/initdb  #å…±äº«ç»™mysqlä½œæ•°æ®åˆå§‹åŒ–
   mysql:
     image: mysql:8
     restart: always
@@ -147,7 +147,7 @@ services:
       - MYSQL_DATABASE=davinci0.3
     volumes:
       - mysql_data:/var/lib/mysql
-      # ³õÊ¼»¯½Å±¾Ô´×ÔdavinicÈİÆ÷µÄinitdbÄ¿Â¼
+      # åˆå§‹åŒ–è„šæœ¬æºè‡ªdavinicå®¹å™¨çš„initdbç›®å½•
       - davinci_initdb:/docker-entrypoint-initdb.d:ro   
 
 volumes:
@@ -159,15 +159,15 @@ volumes:
     
 ```
 
-*Ğ¡ÌáÊ¾£ºdocker-compose.yml»·¾³±äÁ¿ÅäÖÃK=VÖĞ²»ÄÜ³öÏÖ¿Õ¸ñ£¬VÒ²²»ÄÜÓÃË«ÒıºÅ°ü¹ü*
+*å°æç¤ºï¼šdocker-compose.ymlç¯å¢ƒå˜é‡é…ç½®K=Vä¸­ä¸èƒ½å‡ºç°ç©ºæ ¼ï¼ŒVä¹Ÿä¸èƒ½ç”¨åŒå¼•å·åŒ…è£¹*
 
-**4. docker composeÆô¶¯**
+**4. docker composeå¯åŠ¨**
 
 ```
 docker-compose up -d 
 ```
 
-**5.½ödockerÆô¶¯(Ê¹ÓÃÍâ²¿Êı¾İ¿â)**
+**5.ä»…dockerå¯åŠ¨(ä½¿ç”¨å¤–éƒ¨æ•°æ®åº“)**
 
 ```
 docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true" \
