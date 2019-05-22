@@ -8,12 +8,15 @@
 ```
 git clone https://github.com/edp963/davinci-docker.git
 cd /d davinci-docker
-# docker build -t="edp963/davinci:v0.3.0-beta.4" .
 # 修改docker-compose.yml中邮箱配置
 docker-compose up -d 
 ```
 
 [http://localhost:58080](http://localhost:58080)
+
+### 注意事项
+
+**请确认邮箱配置正确！！！否则注册不了用户，从而登录不了**
 
 
 ### Docker支持环境变量列表
@@ -198,4 +201,10 @@ docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinc
 -e MAIL_NICKNAME="davinci_sys" \
 -v /etc/davinci:/opt/davinci/config \
 edp963/davinci:v0.3.0-beta.4
+```
+
+### 镜像本地构建
+
+```
+docker build -t="edp963/davinci:v0.3.0-beta.4" .
 ```
