@@ -9,6 +9,7 @@ RUN cd / \
 
 ADD phantomjs-2.1.1 /opt/phantomjs-2.1.1
 ADD bin/start.sh /opt/davinci/bin/start.sh
+RUN sudo chmod +x /opt/davinci/bin/start.sh
 ADD config/application.yml /opt/davinci/config/application.yml
 
 ENV DAVINCI3_HOME /opt/davinci
