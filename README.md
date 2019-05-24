@@ -1,7 +1,8 @@
 ### 环境要求
 
 1. 安装docker后的 windows,linux,mac
-2. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动安装）
+2. Docker版本： 18.02.0+
+3. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动安装）
 
 ### 完整步骤
 
@@ -51,8 +52,8 @@ LABEL MAINTAINER="edp_support@groups.163.com"
 
 RUN cd / \
 	&& mkdir -p /opt/davinci\
-	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.4/davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist-beta.4.zip \
-	&& unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist-beta.4.zip -d /opt/davinci
+	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.5/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.5.zip \
+	&& unzip davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.5.zip -d /opt/davinci
 
 # 将phantomjs打包到镜像
 
