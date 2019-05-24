@@ -58,10 +58,12 @@ RUN cd / \
 # 将phantomjs打包到镜像
 
 ADD phantomjs-2.1.1 /opt/phantomjs-2.1.1
+RUN chmod +x /opt/phantomjs-2.1.1/phantomjs
 
 # 数据库初始化脚本，等待数据库就绪后启动spring boot
 
 ADD bin/start.sh /opt/davinci/bin/start.sh
+RUN chmod +x /opt/davinci/bin/start.sh
 
 # docker镜像是静态的，因此配置文件中的配置需要用环境变量传递，详见12factor
 # https://12factor.net/zh_cn/
