@@ -119,7 +119,7 @@ source $cmd
 **2. 构建镜像**
 
 ```
-docker build -t="edp963/davinci:v0.3.0-beta.4" .
+docker build -t="edp963/davinci:v0.3.0-beta.5" .
 ```
 
 **3. docker compose**
@@ -138,7 +138,7 @@ services:
       - MAIL_USER=xxxxxx@163.com
       - MAIL_PWD=xxxxxxxx
       - MAIL_NICKNAME=davinci
-    image: "edp963/davinci:v0.3.0-beta.4"
+    image: "edp963/davinci:v0.3.0-beta.5"
     ports:
       - 58080:8080
     # 等待mysql就绪后再启动spring boot主程序
@@ -184,7 +184,7 @@ docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinc
 -e MAIL_HOST="smtp.163.com"  -e MAIL_PORT="465" -e MAIL_STMP_SSL="true" \
 -e MAIL_USER="xxxxxx@163.com"  -e MAIL_PWD="xxxxxxx" \
 -e MAIL_NICKNAME="davinci_sys" \
-edp963/davinci:v0.3.0-beta.4
+edp963/davinci:v0.3.0-beta.5
 ```
 
 **6.使用更丰富的配置**
@@ -200,11 +200,5 @@ docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinc
 -e MAIL_USER="xxxxxx@163.com"  -e MAIL_PWD="xxxxxxx" \
 -e MAIL_NICKNAME="davinci_sys" \
 -v /etc/davinci:/opt/davinci/config \
-edp963/davinci:v0.3.0-beta.4
-```
-
-### 镜像本地构建
-
-```
-docker build -t="edp963/davinci:v0.3.0-beta.4" .
+edp963/davinci:v0.3.0-beta.5
 ```
