@@ -4,14 +4,17 @@
 2. Docker版本： 18.02.0+
 3. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动安装）
 
-### 完整步骤
+### 极速启动
+
+在任意目录 (建议找个空目录)执行以下命令  
 
 ```
-git clone https://github.com/edp963/davinci-docker.git
-cd /d davinci-docker
-# 修改docker-compose.yml中邮箱配置
+curl https://raw.githubusercontent.com/edp963/davinci-docker/master/docker-compose.yml > docker-compose.yml
+vim docker-compose.yml
+# 修改邮箱配置,否则无法登录
 docker-compose up -d 
 ```
+等待一分钟左右,用浏览器打开以下链接: 
 
 [http://localhost:58080](http://localhost:58080)
 
