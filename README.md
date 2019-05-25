@@ -12,7 +12,12 @@
 curl https://raw.githubusercontent.com/edp963/davinci-docker/master/docker-compose.yml > docker-compose.yml
 vim docker-compose.yml
 # 修改邮箱配置,否则无法登录
+
+#docker老手使用以下命令
 docker-compose up -d 
+
+#docker新手用以下命令
+docker-compose up
 ```
 等待一分钟左右,用浏览器打开以下链接: 
 
