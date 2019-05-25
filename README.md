@@ -17,7 +17,7 @@ vim docker-compose.yml
 docker-compose up -d 
 
 #docker新手用以下命令
-docker-compose up
+docker-compose --verbose up
 ```
 等待一分钟左右,用浏览器打开以下链接: 
 
