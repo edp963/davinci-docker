@@ -66,6 +66,9 @@ spring:
     min-idle: 1
     max-wait: 60000
     max-active: 10
+    test-on-borrow: true
+    test-while-idle: true
+    time-between-eviction-runs-millis: 6000
 
   ## redis config
   ## please choose either of the two ways

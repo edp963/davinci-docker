@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /opt/davinci/bin/
-mkdir /initdb
+mkdir -p /initdb
 cat davinci.sql > /initdb/davinci.sql
 sed -i '1i\SET GLOBAL log_bin_trust_function_creators = 1;' /initdb/davinci.sql
 
