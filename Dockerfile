@@ -4,8 +4,8 @@ LABEL MAINTAINER="edp_support@groups.163.com"
 
 RUN cd / \
 	&& mkdir -p /opt/davinci\
-	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.5/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.5.zip \
-	&& unzip davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.5.zip -d /opt/davinci
+	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.6/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.6.zip \
+	&& unzip davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.6.zip -d /opt/davinci
 
 ADD phantomjs-2.1.1 /opt/phantomjs-2.1.1
 RUN chmod +x /opt/phantomjs-2.1.1/phantomjs
