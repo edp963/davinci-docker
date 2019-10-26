@@ -66,6 +66,7 @@ spring:
     min-idle: 1
     max-wait: 60000
     max-active: 10
+# 以下三个参数在sqlserver驱动下会阻塞程序,必须注释,耗费用人整整四天时间才查出此问题!!!!
     test-on-borrow: true
     test-while-idle: true
     time-between-eviction-runs-millis: 6000
