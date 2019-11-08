@@ -35,7 +35,7 @@ docker-compose --verbose up
 [spring boot应用配置文档-环境变量](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-application-property-files)
 
 变量|描述
--|-|-
+-|-
 SERVER_ADDRESS|davinci域名
 SPRING_DATASOURCE_URL|
 SPRING_DATASOURCE_USERNAME|
