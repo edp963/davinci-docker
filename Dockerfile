@@ -16,10 +16,11 @@ RUN mkdir -p /opt/phantomjs-2.1.1 \
 	&& rm -rf phantomjs-2.1.1-linux-x86_64
 
 
-ADD bin/start.sh /opt/davinci/bin/start.sh
-ADD config/application.yml /opt/davinci/config/application.yml
+ADD bin/docker-entrypoint.sh /opt/davinci/bin/docker-entrypoint.sh
 
-RUN chmod +x /opt/phantomjs-2.1.1/phantomjs && chmod +x /opt/davinci/bin/start.sh
+
+RUN chmod +x /opt/davinci/bin/docker-entrypoint.sh \
+&&  chmod +x /opt/phantomjs-2.1.1/phantomjs
 
 
 ENV DAVINCI3_HOME /opt/davinci
