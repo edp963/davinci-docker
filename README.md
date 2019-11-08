@@ -196,11 +196,11 @@ docker-compose up -d
 **5.仅docker启动(使用外部数据库)**
 
 ```
-docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true" \
--e DB_USER="root" -e DB_PWD="pwd" \
--e MAIL_HOST="smtp.163.com"  -e MAIL_PORT="465" -e MAIL_STMP_SSL="true" \
--e MAIL_USER="xxxxxx@163.com"  -e MAIL_PWD="xxxxxxx" \
--e MAIL_NICKNAME="davinci_sys" \
+docker run -p 58081:8080 -e SPRING_DATASOURCE_URL="jdbc:mysql://yourmysqlserver:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true" \
+-e SPRING_DATASOURCE_USERNAME="root" -e SPRING_DATASOURCE_PASSWORD="pwd" \
+-e SPRING_MAIL_HOST="smtp.163.com"  -e SPRING_MAIL_PORT="465" -e SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE="true" \
+-e SPRING_MAIL_USERNAME="xxxxxx@163.com"  -e SPRING_MAIL_PASSWORD="xxxxxxx" \
+-e SPRING_MAIL_NICKNAME="davinci_sys" \
 edp963/davinci:v0.3.0-beta.7
 ```
 
@@ -211,11 +211,11 @@ edp963/davinci:v0.3.0-beta.7
 然后docker run 时将其挂载到 `/opt/davinci/config` 
 
 ```
-docker run -p 58081:8080 -e MYSQL_CONN="jdbc:mysql://yourmysqlserver:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true" \
--e DB_USER="root" -e DB_PWD="pwd" \
--e MAIL_HOST="smtp.163.com"  -e MAIL_PORT="465" -e MAIL_STMP_SSL="true" \
--e MAIL_USER="xxxxxx@163.com"  -e MAIL_PWD="xxxxxxx" \
--e MAIL_NICKNAME="davinci_sys" \
+docker run -p 58081:8080 -e SPRING_DATASOURCE_URL="jdbc:mysql://yourmysqlserver:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true" \
+-e SPRING_DATASOURCE_USERNAME="root" -e SPRING_DATASOURCE_PASSWORD="pwd" \
+-e SPRING_MAIL_HOST="smtp.163.com"  -e SPRING_MAIL_PORT="465" -e SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE="true" \
+-e SPRING_MAIL_USERNAME="xxxxxx@163.com"  -e SPRING_MAIL_PASSWORD="xxxxxxx" \
+-e SPRING_MAIL_NICKNAME="davinci_sys" \
 -v /etc/davinci:/opt/davinci/config \
 edp963/davinci:v0.3.0-beta.7
 ```
