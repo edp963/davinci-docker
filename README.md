@@ -64,9 +64,9 @@ LABEL MAINTAINER="edp_support@groups.163.com"
 
 RUN cd / \
 	&& mkdir -p /opt/davinci \
-	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.7/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.7.zip \
-	&& unzip davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.7.zip -d /opt/davinci\
-	&& rm -rf davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.7.zip
+	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.8/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.8.zip \
+	&& unzip davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.8.zip -d /opt/davinci\
+	&& rm -rf davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.8.zip
 
 # 将phantomjs打包到镜像
 
@@ -132,7 +132,7 @@ source $cmd
 **2. 构建镜像**
 
 ```
-docker build -t="edp963/davinci:v0.3.0-beta.7" .
+docker build -t="edp963/davinci:v0.3.0-beta.8" .
 ```
 
 **3. docker compose**
@@ -155,7 +155,7 @@ services:
       - SPRING_MAIL_NICKNAME=davinci
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE=true
       - SCREENSHOT_PHANTOMJS_PATH=/opt/phantomjs-2.1.1/phantomjs
-    image: "edp963/davinci:v0.3.0-beta.7"
+    image: "edp963/davinci:v0.3.0-beta.8"
     ports:
       - 58080:8080
     # 等待mysql就绪后再启动spring boot主程序
@@ -201,7 +201,7 @@ docker run -p 58081:8080 -e SPRING_DATASOURCE_URL="jdbc:mysql://yourmysqlserver:
 -e SPRING_MAIL_HOST="smtp.163.com"  -e SPRING_MAIL_PORT="465" -e SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE="true" \
 -e SPRING_MAIL_USERNAME="xxxxxx@163.com"  -e SPRING_MAIL_PASSWORD="xxxxxxx" \
 -e SPRING_MAIL_NICKNAME="davinci_sys" \
-edp963/davinci:v0.3.0-beta.7
+edp963/davinci:v0.3.0-beta.8
 ```
 
 **6.使用更丰富的配置**
@@ -217,7 +217,7 @@ docker run -p 58081:8080 -e SPRING_DATASOURCE_URL="jdbc:mysql://yourmysqlserver:
 -e SPRING_MAIL_USERNAME="xxxxxx@163.com"  -e SPRING_MAIL_PASSWORD="xxxxxxx" \
 -e SPRING_MAIL_NICKNAME="davinci_sys" \
 -v /etc/davinci:/opt/davinci/config \
-edp963/davinci:v0.3.0-beta.7
+edp963/davinci:v0.3.0-beta.8
 ```
 
 **7.挂载其它驱动包**
