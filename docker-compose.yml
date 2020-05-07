@@ -24,6 +24,9 @@ services:
       - davinci_logs:/opt/davinci/logs
       - davinci_userfiles:/opt/davinci/userfiles
       - davinci_initdb:/initdb
+      # 如果要使用更多数据源，请将驱动挂载到/opt/davinci/lib/下面，类似下面
+      # - kylin-jdbc-2.6.3.jar.jar:/opt/davinci/lib/kylin-jdbc-2.6.3.jar.jar
+      # - mssql-jdbc-7.0.0.jre8.jar:/opt/davinci/lib/mssql-jdbc-7.0.0.jre8.jar
   mysql:
     image: mysql:8
     restart: always

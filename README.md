@@ -2,7 +2,7 @@
 
 1. 安装docker后的 windows,linux,mac
 2. Docker版本： 18.02.0+
-3. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动安装）
+3. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动[安装](https://docs.docker.com/compose/install/)）
 
 ### 极速启动
 
@@ -27,6 +27,18 @@ docker-compose --verbose up
 
 **请确认邮箱配置正确！！！否则注册不了用户，从而登录不了**
 
+### Docker Compose基本操作
+
+```
+docker-compose [-f docker-compose.yml] down   # 停止当前配置文件中所有容器
+docker exec -it xxxxx /bin/bash   # xxx代表容器ID或者Name,用这个命令可以进入容器内执行命令
+```
+
+### 本地构建davinci镜像
+
+```
+docker build -f local.Dockerfile -t="local/davinci:v0.3.0-beta.9" --build-arg DAVINCI_ZIP=你的davincizip包文件名 .
+```
 
 ### Docker支持环境变量列表
 

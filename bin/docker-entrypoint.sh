@@ -12,7 +12,7 @@ host="$1"
 shift
 cmd="$@"
 
-until [ $(curl -I -m 10 -o /dev/null -s -w %{size_download} $host) -gt 0 ]; do
+until [ $(curl -I -m 5 -o /dev/null -s -w %{remote_port} $host) -gt 0 ]; do
   >&2 echo "database is unavailable - sleeping"
   sleep 1
 done
