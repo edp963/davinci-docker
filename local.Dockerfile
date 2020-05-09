@@ -13,7 +13,7 @@ ADD phantomjs /opt/phantomjs-2.1.1
 ADD bin/docker-entrypoint.sh /opt/davinci/bin/docker-entrypoint.sh
 
 RUN chmod +x /opt/davinci/bin/docker-entrypoint.sh \
-&&  chmod +x /opt/phantomjs-2.1.1/phantomjs
+&&  chmod +x /opt/phantomjs-2.1.1
 
 FROM  openjdk:8u242-jdk AS base
 
