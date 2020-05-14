@@ -28,6 +28,7 @@ RUN chmod +x /opt/davinci/bin/docker-entrypoint.sh \
 
 ENV DAVINCI3_HOME /opt/davinci
 ENV PHANTOMJS_HOME /opt/phantomjs-2.1.1
+ENV SCREENSHOT_PHANTOMJS_PATH=/opt/phantomjs-2.1.1/phantomjs
 ENV OPENSSL_CONF=/etc/ssl/
 
 WORKDIR /opt/davinci
