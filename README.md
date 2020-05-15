@@ -38,7 +38,7 @@ docker tag <oldtag> <newtag>   # 给镜像贴新标签
 ### 本地构建davinci镜像
 
 1. 将phantomjs下载到当前目录phantomjs文件夹中， `./phantomjs/phantomjs`
-2. 下载[chromedriver](https://chromedriver.chromium.org/downloads)至`./chrome/chromedriver`
+2. 若使用chrome驱动，则使用`selenium/standalone-chrome`镜像,docker-compose中已配置好
 3. 将mvn package命令产生的zip包拷贝到当前目录,原包路径为`davinci项目\assembly\target\davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.xxxxxx.zip`
 
 ```

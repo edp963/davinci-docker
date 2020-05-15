@@ -1,1 +1,0 @@
-从 https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads) 下载linux版chrome驱动放在此文件夹
