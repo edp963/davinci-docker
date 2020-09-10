@@ -159,6 +159,8 @@ version: '3.6'
 services:
   davinci:
     environment:
+      # TZ is TIME_ZONE , you can set your local time zone, or no use it(delete it)
+      - TZ=Asia/Shanghai
       - SERVER_ADDRESS=0.0.0.0
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
       - SPRING_DATASOURCE_USERNAME=root
