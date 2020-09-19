@@ -82,14 +82,14 @@ LABEL MAINTAINER="edp_support@groups.163.com"
 RUN cd / \
 	&& mkdir -p /opt/davinci \
 	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.9/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip \
-	&& unzip davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip -d /opt/davinci\
+	&& tar -xf davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip -d /opt/davinci\
 	&& rm -rf davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip
 
 # 将phantomjs打包到镜像
 
 RUN mkdir -p /opt/phantomjs-2.1.1 \
     && wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-	&& unzip phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+	&& tar -xf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
 	&& rm -rf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
 	&& mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /opt/phantomjs-2.1.1/phantomjs \
 	&& rm -rf phantomjs-2.1.1-linux-x86_64
@@ -159,6 +159,8 @@ version: '3.6'
 services:
   davinci:
     environment:
+      # TZ is TIME_ZONE , you can set your local time zone, or no use it(delete it)
+      - TZ=Asia/Shanghai
       - SERVER_ADDRESS=0.0.0.0
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/davinci0.3?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
       - SPRING_DATASOURCE_USERNAME=root
