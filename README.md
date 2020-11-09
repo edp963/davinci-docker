@@ -4,6 +4,7 @@
 2. Docker版本： 18.02.0+
 3. 检查是否有docker-compose命令（安装docker后默认会有，否则请手动[安装](https://docs.docker.com/compose/install/)）
 
+注：因v0.3.0-rc不再支持phantom，如需使用phantom，请查看之前的分支。强烈建议使用docker-compose启动！
 ### 极速启动
 
 在任意目录 (建议找个空目录)执行以下命令  
@@ -37,7 +38,7 @@ docker tag <oldtag> <newtag>   # 给镜像贴新标签
 
 ### 本地构建davinci镜像
 
-1. 将phantomjs下载到当前目录phantomjs文件夹中， `./phantomjs/phantomjs`
+~~1. 将phantomjs下载到当前目录phantomjs文件夹中， `./phantomjs/phantomjs`~~
 2. 若使用chrome驱动，则使用`selenium/standalone-chrome`镜像,docker-compose中已配置好
 3. 将mvn package命令产生的zip包拷贝到当前目录,原包路径为`davinci项目\assembly\target\davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.xxxxxx.zip`
 
@@ -65,7 +66,8 @@ SPRING_MAIL_USERNAME|
 SPRING_MAIL_PASSWORD|
 SPRING_MAIL_NICKNAME|
 SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE|
-SCREENSHOT_PHANTOMJS_PATH|
+SCREENSHOT_CHROMEDRIVER_PATH|
+SCREENSHOT_REMOTE_WEBDRIVER_URL|
 
 ### 原理分析
 
@@ -77,22 +79,18 @@ FROM java:8-jre
 
 LABEL MAINTAINER="edp_support@groups.163.com"
 
-# 从github上下载分发包并解压
+# 设置变量 DAVINCI_ZIP
+ARG DAVINCI_ZIP=davinci-assembly_0.3.1-0.3.1-SNAPSHOT-dist-rc.zip
 
+# 从github上下载分发包并解压
 RUN cd / \
 	&& mkdir -p /opt/davinci \
-	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-beta.9/davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip \
-	&& tar -xf davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip -d /opt/davinci\
-	&& rm -rf davinci-assembly_3.0.1-0.3.1-SNAPSHOT-dist-beta.9.zip
+	&& wget https://github.com/edp963/davinci/releases/download/v0.3.0-rc/$DAVINCI_ZIP \
+	&& tar -xf $DAVINCI_ZIP -d /opt/davinci\
+	&& rm -rf $DAVINCI_ZIP \
+	&& cp -v /opt/davinci/config/application.yml.example /opt/davinci/config/application.yml
 
-# 将phantomjs打包到镜像
-
-RUN mkdir -p /opt/phantomjs-2.1.1 \
-    && wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-	&& tar -xf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-	&& rm -rf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-	&& mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs /opt/phantomjs-2.1.1/phantomjs \
-	&& rm -rf phantomjs-2.1.1-linux-x86_64
+# 注：0.3.0 rc不再支持phantom方式，如有需要，请查看0.3.0-rc之前的分支
 
 # 数据库初始化脚本，等待数据库就绪后启动spring boot
 
@@ -149,7 +147,7 @@ source $cmd
 **2. 构建镜像**
 
 ```
-docker build -t="edp963/davinci:v0.3.0-beta.9" .
+docker build -t="edp963/davinci:v0.3.0-rc" .
 ```
 
 **3. docker compose**
@@ -173,8 +171,10 @@ services:
       - SPRING_MAIL_PASSWORD=xxxxxxxx
       - SPRING_MAIL_NICKNAME=davinci
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_ENABLE=true
-      - SCREENSHOT_PHANTOMJS_PATH=/opt/phantomjs-2.1.1/phantomjs
-    image: "edp963/davinci:v0.3.0-beta.9"
+      - SCREENSHOT_DEFAULT_BROWSER=CHROME
+      - SCREENSHOT_TIMEOUT_SECOND=15
+      - SCREENSHOT_REMOTE_WEBDRIVER_URL=http://chrome:4444/wd/hub
+    image: "edp963/davinci:v0.3.0-rc"
     ports:
       - 58080:8080
     # 等待mysql就绪后再启动spring boot主程序
@@ -184,6 +184,11 @@ services:
       - davinci_logs:/opt/davinci/logs
       - davinci_userfiles:/opt/davinci/userfiles
       - davinci_initdb:/initdb  #共享给mysql作数据初始化
+  chrome:
+    image: selenium/standalone-chrome
+    shm_size: 2g
+    environment:
+      - TZ=Asia/Shanghai
   mysql:
     image: mysql:8
     restart: always
@@ -200,8 +205,6 @@ volumes:
   davinci_logs:
   davinci_initdb:
   mysql_data:
-
-    
 ```
 
 *小提示：docker-compose.yml环境变量配置K=V中不能出现空格，V也不能用双引号包裹*
