@@ -18,7 +18,7 @@ services:
       - SCREENSHOT_DEFAULT_BROWSER=CHROME
       - SCREENSHOT_TIMEOUT_SECOND=15
       - SCREENSHOT_REMOTE_WEBDRIVER_URL=http://chrome:4444/wd/hub
-    image: "edp963/davinci:v0.3.0-rc"
+    image: "edp963/davinci:latest"
     ports:
       - 58080:8080
     command: ["./bin/docker-entrypoint.sh", "mysql:3306", "--", "start-server.sh"]
