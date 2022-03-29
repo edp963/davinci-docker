@@ -51,6 +51,7 @@ docker build -f local.Dockerfile -t="local/davinci:v0.3.0-beta.9" --build-arg DA
 *以下环境变量将直接覆盖spring boot配置文件*
 
 [spring boot应用配置文档-环境变量](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-application-property-files)
+[spring boot应用配置文档-环境变量与springboot配置转换规则](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables)
 
 变量|描述
 -|-
